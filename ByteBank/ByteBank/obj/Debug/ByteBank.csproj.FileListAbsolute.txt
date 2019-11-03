@@ -1,0 +1,6 @@
+C:\Users\rafa_\Documents\C#\CSharp3\ByteBank\ByteBank\bin\Debug\ByteBank.exe.config
+C:\Users\rafa_\Documents\C#\CSharp3\ByteBank\ByteBank\bin\Debug\ByteBank.exe
+C:\Users\rafa_\Documents\C#\CSharp3\ByteBank\ByteBank\bin\Debug\ByteBank.pdb
+C:\Users\rafa_\Documents\C#\CSharp3\ByteBank\ByteBank\obj\Debug\ByteBank.csprojAssemblyReference.cache
+C:\Users\rafa_\Documents\C#\CSharp3\ByteBank\ByteBank\obj\Debug\ByteBank.exe
+C:\Users\rafa_\Documents\C#\CSharp3\ByteBank\ByteBank\obj\Debug\ByteBank.pdb
