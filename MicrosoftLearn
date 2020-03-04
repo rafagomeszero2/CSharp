@@ -1,0 +1,222 @@
+//char
+Console.WriteLine('b');
+
+//string
+Console.WriteLine("Hello World!");
+
+//integer
+Console.WriteLine(123);
+
+//decimal
+Console.WriteLine(12.3m); 
+//Para criar um literal decimal, acrescente a letra m após o número. Nesse contexto, o m é chamado de sufixo literal. 
+//O sufixo literal informa ao compilador que você deseja trabalhar com um valor do tipo decimal.
+
+var message = "Hello world!";
+//Uma variável local de tipo implícito é criada usando a palavra-chave var, que instrui o compilador de C# a inferir o tipo.
+//Quando o tipo é inferido, é como se o tipo de dados real tivesse sido usado para declarar a variável.
+
+//Formatação de strings
+// \n pula linha \t tab \u unicode @ texto literal
+
+Console.WriteLine("Hello \"World\"!");
+Console.WriteLine("c:\\sourse\\repos");
+Console.Write("\n");
+Console.WriteLine("Generating invoices for customer \"ABC Corp\" ...");
+Console.WriteLine("Invoice: 1021\t\tComplete!");
+Console.WriteLine("Invoice: 1022\t\tComplete!");
+Console.WriteLine("\nOutput Directory:\t");
+Console.WriteLine(@"c:\invoices");
+Console.WriteLine("");
+Console.WriteLine(@"     c:\source\repos
+             (this is where your code goes)");
+Console.WriteLine();
+// Kon'nichiwa World
+Console.WriteLine("\u3053\u3093\u306B\u3061\u306F World!");
+//To generate Japanese invoices:
+//Nihon no seikyu-sho o seisei suru ni wa:
+Console.Write("\n\n\u65e5\u672c\u306e\u8acb\u6c42\u66f8\u3092\u751f\u6210\u3059\u308b\u306b\u306f\uff1a\n\t");
+Console.WriteLine(@"c:\invoices\app.exe -j");
+
+string firstName = "Bob";
+string greeting ="Hello";
+Console.WriteLine(greeting + " " + firstName + "!");
+string message = $"{greeting} {firstName}!";
+Console.WriteLine(message);
+
+string firstName = "Bob";
+string greeting = "Hello";
+Console.WriteLine($"{greeting} {firstName}!");
+
+string projectName= "First-Project";
+Console.WriteLine($@"C:\Output\{projectName}\Data");
+
+string projectName = "ACME";
+string russianMessage = "\u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u0432\u044b\u0432\u043e\u0434";
+
+Console.WriteLine($@"View English output:
+        c:\Exercise\{projectName}\data.txt");
+
+Console.WriteLine("\n" + russianMessage + ":\n\t\tc:\\Exercise\\" + projectName + "\\ru-RU\\data.txt");
+
+int firstNumber = 12;
+int secondNumber = 7;
+Console.WriteLine(firstNumber + secondNumber);
+
+string firstName = "Bob";
+int widgetsSold = 7;
+Console.WriteLine(firstName + " sold " + widgetsSold + 7 + " widgets.");
+Console.WriteLine(firstName + " sold " + (widgetsSold + 7) + " widgets.");
+
+//operadores matemáticos
+
+int sum = 7+5;
+int difference = 7-5;
+int product = 7*5;
+int quotient = 7/5;
+decimal decimalQuotient = 7.0m / 5;
+
+Console.WriteLine("Sum " + sum);
+Console.WriteLine("Difference: " + difference);
+Console.WriteLine("Product: " + product);
+Console.WriteLine("Quotient: " + quotient);
+Console.WriteLine("Decimal quotient: " + decimalQuotient);
+
+int first = 7;
+int second = 5;
+decimal quotient = (decimal)first / (decimal)second;
+Console.WriteLine(quotient);
+
+Console.WriteLine("Modulus of 200 / 5 : " + (200 % 5));
+Console.WriteLine("Modulus of 7 / 5 : " + (7 % 5));
+
+//incrementos
+
+int value = 1;
+
+value = value + 1;
+Console.WriteLine("First increment: " + value);
+
+value += 1;
+Console.WriteLine("Second increment: " + value);
+
+value++;
+Console.WriteLine("Third increment: " + value);
+
+value = value -1;
+Console.WriteLine("First decrement: " + value);
+
+value -= 1;
+Console.WriteLine("Second decrement: " + value);
+
+value--;
+Console.WriteLine("Third decrement: " + value);
+
+int value = 1;
+value++;
+Console.WriteLine("First: " + value);
+Console.WriteLine("Second: " + value++);
+Console.WriteLine("Third: " + value);
+Console.WriteLine("Fourth: " + (++value));
+
+int fahrenheit = 94;
+decimal celsius = (fahrenheit - 32)*(5.0m / 9.0m);
+Console.WriteLine(celsius); 
+
+
+
+
+//Metodos
+
+
+//metodo com estado (instancia)
+Random dice = new Random();
+int roll = dice.Next(1,7);
+Console.WriteLine(roll);
+
+
+//if-else
+
+Random dice = new Random();
+
+int roll1 = dice.Next(1,7);
+int roll2 = dice.Next(1,7);
+int roll3 = dice.Next(1,7);
+
+int total = roll1 + roll2 + roll3;
+
+Console.WriteLine($"Dice roll: {roll1}+{roll2}+{roll3}={total}");
+
+if((roll1 == roll2) || (roll2 == roll3) || (roll1 == roll3))
+{
+    if((roll1 == roll2) && (roll2 == roll3))
+    {
+        Console.WriteLine("Triple! +6");
+        total+=6;
+    }
+    else
+    {
+        Console.WriteLine("Double! +2");
+        total+=2;
+    }   
+}
+
+if(total >= 16)
+{
+    Console.WriteLine("Car");
+}
+else if(total >=10)
+{
+    Console.WriteLine("Laptop");
+}
+else if(total ==7)
+{
+    Console.WriteLine("Trip");
+}
+else
+{
+    Console.WriteLine("Cat (=");
+}
+
+
+//Matriz
+
+/*string[] fraudulentOderIDs = new string[3];
+
+fraudulentOderIDs[0] = "A123";
+fraudulentOderIDs[1] = "B456";
+fraudulentOderIDs[2] = "C789";*/
+
+string[] fraudulentOderIDs = {"A123", "B456", "C789"};
+
+Console.WriteLine($"First: {fraudulentOderIDs[0]}");
+Console.WriteLine($"Second: {fraudulentOderIDs[1]}");
+Console.WriteLine($"Third: {fraudulentOderIDs[2]}");
+
+fraudulentOderIDs[0] = "F000";
+
+Console.WriteLine($"Reassign First: {fraudulentOderIDs[0]}");
+Console.WriteLine($"There are {fraudulentOderIDs.Length} fraudulent orders to process.");
+
+
+//foreach
+
+string[] names = {"Bob", "Conrad", "Grant"};
+foreach (string name in names)
+{
+    Console.WriteLine(name);
+}
+
+int[] inventory = {200, 450, 700, 175, 250};
+int sum = 0;
+int bin = 0;
+foreach (int items in inventory)
+{
+    sum+= items;
+    bin++;
+    Console.WriteLine($"Bin {bin} = {items} items (Running Tally: {sum})");
+}
+
+Console.WriteLine($"We have {sum} items in inventory.");
+
+
