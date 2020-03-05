@@ -219,4 +219,292 @@ foreach (int items in inventory)
 
 Console.WriteLine($"We have {sum} items in inventory.");
 
+/*string value1 = " a";
+string value2 = "A ";
+Console.WriteLine(value1.Trim().ToLower() == value2.Trim().ToLower());*/
+
+/*Console.WriteLine("a" != "a");
+Console.WriteLine("a" != "A");
+Console.WriteLine(1 != 2);
+
+string value = "a";
+Console.WriteLine(value != "a");*/
+
+/*Console.WriteLine(1>2);
+Console.WriteLine(1<2);
+Console.WriteLine(1>=1);
+Console.WriteLine(1<=1);*/
+
+/*string pangram = "The quick brown fox jumps over the lazy dog.";
+Console.WriteLine(!pangram.Contains("fox"));
+Console.WriteLine(!pangram.Contains("cow"));
+
+Console.WriteLine(pangram.Contains("fox") == false);
+Console.WriteLine(!pangram.Contains("fox"));*/
+
+/*int saleAmount = 1001;
+int discount = saleAmount > 1000 ? 100 : 50;
+Console.WriteLine($"Discount: {discount}");*/
+
+/*int saleAmount = 1001;
+Console.WriteLine($"Discount: {(saleAmount > 1000 ? 100:50)}");*/
+
+/*Random coin = new Random();
+int roll = coin.Next(0,2);
+Console.WriteLine((roll == 1) ? "heads" : "tails");*/
+
+string permission = "Admin|Manager";
+int level = 53;
+
+if (permission.Contains("Admin"))
+{
+    if (level > 55)
+    {
+        Console.WriteLine("Welcome, Super Admin user.");
+    }
+    else
+    {
+        Console.WriteLine("Welcome, Admin user.");
+    }
+}
+else if (permission.Contains("Manager"))
+{
+    if (level >= 20)
+    {
+        Console.WriteLine("Contact an Admin for access.");
+    }
+    else
+    {
+        Console.WriteLine("You do not have sufficient privileges.");
+    }
+}
+else
+{
+    Console.WriteLine("You do not have sufficient privileges.");
+}
+
+
+//switch-case
+
+int employeeLevel = 100;
+string employeeName = "John Smith";
+
+string title = "";
+
+switch (employeeLevel)
+{
+    case 100:
+    case 200:
+        title = "Senior Associate";
+        break;
+    case 300:
+        title = "Manager";
+        break;
+    case 400:
+        title = "Senior Manager"
+        ;
+        break;
+    default:
+        title = "Associate";
+        break;
+}
+
+Console.WriteLine($"{employeeName}, {title}");
+
+/////////////////////////////////////////////////////////////
+
+string sku = "01-MN-L";
+
+string[] product = sku.Split('-');
+
+string type ="";
+string color = "";
+string size = "";
+
+switch(product[0])
+{
+    case "01":
+        type = "Sweat shirt";
+        break;
+    case "02":
+        type = "T-Shirt";
+        break;
+    case "03":
+        type = "Sweat pants";
+        break;
+    default:
+        type = "Other";
+        break;
+}
+
+switch(product[1])
+{
+    case "BL":
+        color = "Black";
+        break;
+    case "MN":
+        color = "Maroon";
+        break;
+    default:
+        color = "White";
+        break;
+}
+
+switch(product[2])
+{
+    case "S":
+        size = "Small";
+        break;
+    case "M":
+        size = "Medium";
+        break;
+    case "L":
+        size = "Large";
+        break;
+    default:
+        size = "One Size Fits All";
+        break;
+}
+
+Console.WriteLine($"Product: {size} {color} {type}");
+
+
+////////////////////////////
+//FOR FIZZ BUZZ
+
+for(int i=1;i<=100;i++)
+{
+    if(i%3==0 && i%5==0)
+        Console.WriteLine($"{i} FizzBuzz");
+    else if(i%3==0)
+        Console.WriteLine($"{i} Fizz");
+    else if(i%5==0)
+        Console.WriteLine($"{i} Buzz");
+    else
+        Console.WriteLine(i);
+}
+
+//////////////////////////////////
+// do while
+
+Random random = new Random();
+int current = random.Next(1,11);
+
+/*do
+{
+    current = random.Next(1,11);
+    Console.WriteLine(current);
+}
+while (current !=7);*/
+
+/*while (current >= 3)
+{
+    Console.WriteLine(current);
+    current = random.Next(1,11);
+}
+Console.WriteLine($"Last number: {current}");*/
+
+//continue pula para o proximo loop
+do
+{
+    current = random.Next(1,11);
+    if(current >= 8) 
+        continue;
+    Console.WriteLine(current);
+}
+while (current != 7);
+
+
+
+//////////////////////////////////
+
+//SIMPLE RPG
+
+int playerHP = 10;
+int enemyHP = 10;
+
+Random dice = new Random();
+
+do
+{
+    if(enemyHP > 0)
+    {
+        int attack = dice.Next(1,11);
+        enemyHP -= attack;
+        //Console.WriteLine($"EnemyHP: {enemyHP}");
+        Console.WriteLine($"You attack the Enemy and cause {attack} damage.");
+        Console.WriteLine($"EnemyHP: {enemyHP}");
+        if(enemyHP <= 0)
+        {
+            Console.WriteLine("You win!");
+            break;
+        }
+    }
+    if(playerHP > 0)
+    {
+        int attack = dice.Next(1,11);
+        playerHP -= attack;
+        //Console.WriteLine($"PlayerHP: {playerHP}");
+        Console.WriteLine($"The enemy attacks you and cause {attack} damage.");
+        Console.WriteLine($"PlayerHP: {playerHP}");
+        if(playerHP <= 0)
+        {
+            Console.WriteLine("You lose!");
+            break;
+        }
+    }
+}
+while(enemyHP>0 && playerHP>0);
+
+////////////////////////
+
+//Tipos de dados
+
+Console.WriteLine("Signed integral types:");
+
+Console.WriteLine($"sbyte : {sbyte.MinValue} to {sbyte.MaxValue}");
+Console.WriteLine($"short : {short.MinValue} to {short.MaxValue}");
+Console.WriteLine($"int   : {int.MinValue} to {int.MaxValue}");
+Console.WriteLine($"long  : {long.MinValue} to {long.MaxValue}");
+
+Console.WriteLine("");
+Console.WriteLine("Unsigned integral types");
+
+Console.WriteLine($"byte    : {byte.MinValue} to {byte.MaxValue}");
+Console.WriteLine($"ushort  : {ushort.MinValue} to {ushort.MaxValue}");
+Console.WriteLine($"uint    : {uint.MinValue} to {uint.MaxValue}");
+Console.WriteLine($"ulong   : {ulong.MinValue} to {ulong.MaxValue}");
+
+Console.WriteLine("");
+Console.WriteLine("Floating point types");
+Console.WriteLine($"float   : {float.MinValue} to {float.MaxValue}");
+Console.WriteLine($"double  : {double.MinValue} to {double.MaxValue}");
+Console.WriteLine($"decimal : {decimal.MinusOne} to {decimal.MaxValue}");
+
+/////////////////////////////
+//convertendo tipos de dados
+
+/*int first = 5;
+int second = 7;
+string message = first.ToString() + second.ToString();
+Console.WriteLine(message);*/
+
+/*string first = "5";
+string second = "7";
+
+//TryParse() é uma versão melhor do Parse()
+int sum = int.Parse(first) + int.Parse(second);
+Console.WriteLine(sum);*/
+
+/*string value1 = "5";
+string value2 = "7";
+int result = Convert.ToInt32(value1) * Convert.ToInt32(value2);
+Console.WriteLine(result);*/
+
+int value = (int)1.5m; //casting truncates
+Console.WriteLine(value);
+
+int value2 = Convert.ToInt32(1.5m); //converting rounds up
+Console.WriteLine(value2);
+
 
