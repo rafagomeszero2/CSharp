@@ -508,3 +508,420 @@ int value2 = Convert.ToInt32(1.5m); //converting rounds up
 Console.WriteLine(value2);
 
 
+////////////////////////////////////////////////////////
+
+// TryParse
+
+string value = "bad";
+int result = 0;
+if (int.TryParse(value, out result))
+{
+    Console.WriteLine($"Measurement: {result}");
+}
+else
+{
+    Console.WriteLine("Unable to report measurement.");
+}
+// Since it is defined outside of the if statement,
+// it can be accessed later in your code.
+if(result > 0)
+    Console.WriteLine($"Measurement (w/ offset): {50 + result}");
+    
+// TryParse + Foreach
+
+string[] values = { "12.3", "45", "ABC", "11", "DEF"};
+
+string message = "";
+decimal soma = 0m;
+decimal result = 0m;
+
+foreach(var value in values)
+{
+    if(decimal.TryParse(value, out result))
+        soma += result;
+    else
+        message += value;
+}
+Console.WriteLine($"Message: {message}");
+Console.WriteLine($"Total: {soma}");
+
+
+    
+////////////////////////
+// conversions
+
+int value1 = 12;
+decimal value2 = 6.2m;
+float value3 = 4.3f;
+
+// Your code here to set result1
+int result1 = (int)((decimal)value1 / value2);
+
+Console.WriteLine($"Divide value1 by value2, display the result as an int: {result1}");
+
+// Your code here to set result2
+
+decimal result2 = (value2 / (decimal)value3);
+Console.WriteLine($"Divide value2 by value3, display the result as a decimal: {result2}");
+
+// Your code here to set result3
+
+float result3 = value3 / (float)value1;
+Console.WriteLine($"Divide value3 by value1, display the result as a float: {result3}");
+
+
+///////////////////////////////////////
+// Reverse and Sort
+
+string[] pallets = { "B14", "A11", "B12", "A13" };
+
+Console.WriteLine("Sorted...");
+Array.Sort(pallets);
+foreach (var pallet in pallets)
+    Console.WriteLine($" -- {pallet}");
+
+Console.WriteLine("");
+Console.WriteLine("Reversed...");
+Array.Reverse(pallets);
+foreach (var pallet in pallets)
+    Console.WriteLine($"-- {pallet}");
+    
+/////////////////////////////////////
+
+// Resize and Clear
+
+string[] pallets = { "B14", "A11", "B12", "A13" };
+
+Console.WriteLine("");
+
+Console.WriteLine($"Before: {pallets[0]}");
+Array.Clear(pallets, 0,2);
+Console.WriteLine($"Clearing 2 ... count: {pallets.Length}");
+foreach (var pallet in pallets)
+    Console.WriteLine($"-- {pallet}");
+Console.WriteLine($"After: {pallets[0]}");
+
+Console.WriteLine("");
+Array.Resize(ref pallets, 6);
+Console.WriteLine($"Resizing 6 ... count: {pallets.Length}");
+
+pallets[4] = "C01";
+pallets[5] = "C02";
+
+foreach (var pallet in pallets)
+    Console.WriteLine($"-- {pallet}");
+
+Console.WriteLine("");
+Array.Resize(ref pallets, 3);
+Console.WriteLine($"Resizing 3 ... count {pallets.Length}");
+
+foreach (var pallet in pallets)
+    Console.WriteLine($"-- {pallet}");
+    
+    
+/////////////////////////
+
+//Split and Join
+
+string value = "abc123";
+char[] valueArray = value.ToCharArray();
+Array.Reverse(valueArray);
+//string result = new string(valueArray);
+string result = String.Join(",", valueArray);
+Console.WriteLine(result);
+
+string[] items = result.Split(',');
+foreach (string item in items)
+    Console.Write(item);
+    
+//////////////////////////////////////
+// Manipulando strings
+
+string pangram = "The quick brown fox jumps over the lazy dog";
+
+string[] splitMessage = pangram.Split(' ');
+char[] charMessage;
+string finalMessage;
+
+foreach (string message in splitMessage)
+{
+    charMessage = message.ToCharArray();
+    Array.Reverse(charMessage);
+    finalMessage = String.Join("", charMessage);
+    Console.Write($"{finalMessage} ");
+}
+/*
+string pangram = "The quick brown fox jumps over the lazy dog";
+
+string[] message = pangram.Split(' ');
+string[] newMessage = new string[message.Length];
+
+for (int i = 0; i < message.Length; i++)
+{
+    char[] letters = message[i].ToCharArray();
+    Array.Reverse(letters);
+    newMessage[i] = new string(letters);
+}
+
+string result = String.Join(" ", newMessage);
+Console.WriteLine(result);*/
+
+
+string orderStream = "B123,C234,A345,C15,B177,G3003,C235,B179";
+string[] organizedOrderStream = orderStream.Split(',');
+
+foreach (var order in organizedOrderStream)
+    if(order.ToString().StartsWith("B"))
+        Console.WriteLine(order);
+        
+
+
+//////////////////////////////////////////////
+// formatando strings
+
+string first = "Hello";
+string second = "Vadim";
+string third = "Blyat";
+string result = string.Format("{0} {1}, {2}!", first, second, third);
+Console.WriteLine(result);
+Console.WriteLine("{1} {1} {0}", second, third);
+
+decimal price = 123.45m;
+int discount = 50;
+Console.WriteLine($"Price: {price:C} (Save {discount:C}"); //moeda local
+
+decimal measurement = 123456.78912m;
+Console.WriteLine($"Measurement: {measurement:N}"); //duas casas
+Console.WriteLine($"Measurement: {measurement:N4}"); //quatro casas
+
+decimal tax = .36785m;
+Console.WriteLine($"Tax rate: {tax:P2}"); //percent
+
+int invoiceNumber = 1201;
+decimal productMeasurement = 25.4568m;
+decimal subtotal = 2759.00m;
+decimal taxPercentage = .15825m;
+decimal total = 3185.19m;
+
+Console.WriteLine($"Invoice Number: {invoiceNumber}");
+Console.WriteLine($"    Measurement: {productMeasurement:N3} mg");
+Console.WriteLine($"    Sub Total: {subtotal:C}");
+Console.WriteLine($"        Tax: {taxPercentage:P2}");
+Console.WriteLine($"    Total Due: {total:C}");
+
+////////////////////////////////////////////////
+// metodos de formatação string
+
+Veja uma breve lista de categorias desses métodos internos para você poder ter uma ideia do que é possível.
+
+    Métodos que adicionam espaços em branco para fins de formatação (PadLeft(), PadRight())
+
+    Métodos que comparam duas cadeias de caracteres ou facilitam a comparação (Trim(), TrimStart(), TrimEnd(), GetHashcode(), a propriedade Length)
+
+    Métodos que ajudam a determinar o que há dentro de uma cadeia de caracteres ou até mesmo recuperar apenas uma parte da cadeia de caracteres (Contains(), StartsWith(), EndsWith(), Substring())
+
+    Métodos que alteram o conteúdo da cadeia de caracteres substituindo, inserindo ou removendo partes (Replace(), Insert(), Remove())
+
+    Métodos que transformam uma cadeia de caracteres em uma matriz de cadeias de caracteres ou de caracteres (Split(), ToCharArray())
+
+string input = "Pad This";
+Console.WriteLine(input);
+Console.WriteLine(input.PadLeft(12));
+Console.WriteLine(input.PadRight(12));
+Console.WriteLine(input.PadRight(12,'-'));
+
+string paymentId = "769";
+string payeeName = "Mr. Stephen Ortega";
+string paymentAmount = "$5,000.00";
+
+var formattedLine = paymentId.PadRight(6);
+formattedLine += payeeName.PadRight(24);
+formattedLine += paymentAmount.PadLeft(10);
+Console.WriteLine("123456789 123456789 123456789 1234567890");
+Console.WriteLine(formattedLine);
+
+string customerName = "Mr. Jones";
+
+string currentProduct = "Magic Yield";
+int currentShares = 2975000;
+decimal currentReturn = 0.1275m;
+decimal currentProfit = 55000000.0m;
+
+string newProduct = "Glorious Future";
+decimal newReturn = 0.13125m;
+decimal newProfit = 63000000.0m;
+
+Console.WriteLine($"Dear {customerName},");
+Console.WriteLine($"As a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramatically increase your return.");
+Console.WriteLine("");
+Console.WriteLine($"Currently, you own {currentShares:N} shares at a return of {currentReturn:P2}.");
+Console.WriteLine("");
+Console.WriteLine($"Our new product, {newProduct} offers a return of {newReturn:P2}.  Given your current volume, your potential profit would be {newProfit:C}.");
+Console.WriteLine("");
+Console.WriteLine("Here's a quick comparison:\n");
+
+string comparrisonMessage = "";
+
+comparrisonMessage += currentProduct.PadRight(20);
+comparrisonMessage += String.Format($"{currentReturn:P2}").PadRight(10);
+comparrisonMessage += String.Format($"{currentProfit:C}\n");
+comparrisonMessage += newProduct.PadRight(20);
+comparrisonMessage += String.Format($"{newReturn:P}").PadRight(10);
+comparrisonMessage += String.Format("{0:C}",newProfit).PadRight(20);
+
+Console.WriteLine(comparrisonMessage);
+
+
+//////////////////////////////////
+// ????
+
+/*string message = "Find what is (inside the parentheses)";
+
+int openingPosition = message.IndexOf('(');
+int closingPosition = message.IndexOf(')');
+
+
+openingPosition += 1;
+
+int length = closingPosition - openingPosition;
+Console.WriteLine(message.Substring(openingPosition, length));*/
+
+/*string message = "What is the value <span>between the tags</span>?";
+
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+
+int openingPosition = message.IndexOf(openSpan);
+int closingPosition = message.IndexOf(closeSpan);
+
+
+openingPosition += openSpan.Length;
+int length = closingPosition - openingPosition;
+Console.WriteLine(message.Substring(openingPosition, length));*/
+
+/*string message = "(What if) I am (only interested) in the last (set of parentheses)?";
+int openingPosition = message.LastIndexOf('(');
+
+openingPosition += 1;
+int closingPosition = message.LastIndexOf(')');
+int length = closingPosition - openingPosition;
+Console.WriteLine(message.Substring(openingPosition, length));*/
+
+/*string message = "(What if) there are (more than) one (set of parentheses)?";
+while (true)
+{
+    int openingPosition = message.IndexOf('(');
+    if(openingPosition == -1) break;
+
+    openingPosition += 1;
+    int closingPosition = message.IndexOf(')');
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
+
+    // Note how we use the overload of Substring to return only the remaining
+    // unprocessed message:
+    message = message.Substring(closingPosition + 1);
+}*/
+
+string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
+
+// The IndexOfAny() helper method requires a char array of characters
+// we want to look for:
+
+char[] openSymbols = { '[', '{', '(' };
+
+/* We'll use a slightly different technique for iterating through the
+characters in the string. This time, we'll use the closing position
+of the previous iteration as the starting index for the next open
+symbol. So, we need to initialize the closingPosition variable
+to zero:*/
+
+int closingPosition = 0;
+while (true)
+{
+    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+
+    if (openingPosition == -1) break;
+
+    string currentSymbol = message.Substring(openingPosition, 1);
+
+    // Now we must find the matching closing symbol
+
+    char matchingSymbol = ' ';
+
+    switch (currentSymbol)
+    {
+        case "[":
+            matchingSymbol = ']';
+            break;
+        case "{":
+            matchingSymbol = '}';
+            break;
+        case "(":
+            matchingSymbol = ')';
+            break;
+    }
+
+    // Finally, use the techniques we've already learned to display the sub-string:
+
+    openingPosition += 1;
+    closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
+}
+
+
+
+///////////////////////////////////
+// Remove and Replace
+
+string data = "12345John Smith          5000  3  ";
+string updatedData = data.Remove(5, 20);
+Console.WriteLine(updatedData);
+
+string message = "This--is--ex-amp-le--da-ta";
+message = message.Replace("--", " ");
+message = message.Replace("-","");
+Console.WriteLine(message);
+
+/////////////////////
+// manipulação de strings
+
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+// Your work here
+
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+
+int openingPosition = input.IndexOf(openSpan);
+int closePosition = input.IndexOf(closeSpan);
+openingPosition += 6;
+int length = closePosition - openingPosition;
+quantity = "Quantity: ";
+quantity += input.Substring(openingPosition, length);
+
+const string openDiv = "<div>";
+const string closeDiv = "</div>";
+
+openingPosition = input.IndexOf(openDiv);
+closePosition = input.IndexOf(closeDiv);
+openingPosition += 5;
+// openingPosition += openDiv.Length;
+length = closePosition - openingPosition;
+output = "Output: ";
+output += input.Substring(openingPosition, length);
+output = output.Replace("&trade","&reg");
+
+
+Console.WriteLine(quantity);
+Console.WriteLine(output);
+
+
+////////////////////////////
+
